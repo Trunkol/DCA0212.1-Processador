@@ -4,11 +4,16 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_arith.all;
 
 entity alu is
-  port ( rst   : in STD_LOGIC;
+  port ( 
+			rst   : in STD_LOGIC;
          clk   : in STD_LOGIC;
-         imm   : in std_logic_vector(3 downto 0);        
-         output: out STD_LOGIC_VECTOR (3 downto 0)
+         imm   : in std_logic_vector(3 downto 0);  			
+         output: out STD_LOGIC_VECTOR (3 downto 0);
          -- insert ports as need be
+			op : in std_logic_vector( 3 downto 0);	
+			acc : in std_logic_vector(3 downto 0);
+			atv: in std_logic_vector( 3 downto 0);
+			input : in std_logic_vector (3 downto 0)
        );
 end alu;
 
@@ -16,9 +21,14 @@ architecture bhv of alu is
 begin
 	process (rst, clk)
 	begin
-	  -- take care of rst state
-	  -- add functionality as required
-	  output <= imm;
+		if(rst = '1') then
+			output <= "0000";
+		else
+	
+			
+		end if;	
+		
+		output <= imm;
 	end process;
 
 end bhv;
@@ -31,7 +41,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity acc is
-  port ( rst   : in STD_LOGIC;
+  port (
+			rst   : in STD_LOGIC;
          clk   : in STD_LOGIC;
          input : in STD_LOGIC_VECTOR (3 downto 0);
          enb   : in STD_LOGIC;
@@ -69,14 +80,14 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity rf is
-  port ( rst    : in STD_LOGIC;
+  port ( 
+			rst    : in STD_LOGIC;
          clk    : in STD_LOGIC;
          input  : in std_logic_vector(3 downto 0);
          sel    : in std_logic_vector(1 downto 0);
          enb    : in std_logic;
          output : out std_logic_vector(3 downto 0)
        );
-		
 end rf;
 
 architecture bhv of rf is
@@ -124,7 +135,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity dp is
-  port ( rst     : in STD_LOGIC;
+  port ( 
+			rst     : in STD_LOGIC;
          clk     : in STD_LOGIC;
          imm     : in std_logic_vector(3 downto 0);
          output_4: out STD_LOGIC_VECTOR (3 downto 0)
@@ -135,12 +147,13 @@ end dp;
 architecture rtl2 of dp is
 
 component alu is
-  port ( rst   : in STD_LOGIC;
+  port ( 
+			rst   : in STD_LOGIC;
          clk   : in STD_LOGIC;
          imm   : in std_logic_vector(3 downto 0);
          output: out STD_LOGIC_VECTOR (3 downto 0)
          -- add ports as required
-    );
+		);
 end component;
 
 -- maybe we should add the other components here......

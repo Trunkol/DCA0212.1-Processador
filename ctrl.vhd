@@ -18,16 +18,16 @@ architecture fsm of ctrl is
 
 	-- constants declared for ease of reading code
 	
-	constant mova    : std_logic_vector(3 downto 0) := "0000";
-	constant movr    : std_logic_vector(3 downto 0) := "0001";
-	constant load    : std_logic_vector(3 downto 0) := "0010";
-	constant add	   : std_logic_vector(3 downto 0) := "0011";
-	constant sub	   : std_logic_vector(3 downto 0) := "0100";
-	constant andr    : std_logic_vector(3 downto 0) := "0101";
-	constant orr     : std_logic_vector(3 downto 0) := "0110";
-	constant jmp	   : std_logic_vector(3 downto 0) := "0111";
-	constant inv     : std_logic_vector(3 downto 0) := "1000";
-	constant halt	   : std_logic_vector(3 downto 0) := "1001";
+	constant mova   : std_logic_vector(3 downto 0) := "0000";
+	constant movr   : std_logic_vector(3 downto 0) := "0001";
+	constant load   : std_logic_vector(3 downto 0) := "0010";
+	constant add	 : std_logic_vector(3 downto 0) := "0011";
+	constant sub	 : std_logic_vector(3 downto 0) := "0100";
+	constant andr   : std_logic_vector(3 downto 0) := "0101";
+	constant orr    : std_logic_vector(3 downto 0) := "0110";
+	constant jmp	 : std_logic_vector(3 downto 0) := "0111";
+	constant inv    : std_logic_vector(3 downto 0) := "1000";
+	constant halt	 : std_logic_vector(3 downto 0) := "1001";
 
 
 	-- as you add more code for your algorithms make sure to increase the
@@ -46,10 +46,10 @@ begin
 	-- these are the only data allowed inside
 	-- our otherwise pure FSM
   
-	variable IR : std_logic_vector(7 downto 0);
-	variable OPCODE : std_logic_vector( 3 downto 0);
-	variable ADDRESS : std_logic_vector (3 downto 0);
-	variable PC : integer;
+	variable IR			: std_logic_vector(7 downto 0);
+	variable OPCODE 	: std_logic_vector( 3 downto 0);
+	variable ADDRESS 	: std_logic_vector (3 downto 0);
+	variable PC 		: integer;
     
 	begin
 		-- don't forget to take care of rst
