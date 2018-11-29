@@ -24,13 +24,27 @@ begin
 		if(rst = '1') then
 			output <= "0000";
 		else
-	
-			
+			case(atv) is
+				when "0101" => 
+					case (op) is
+						when "0011" => --- Operaçao de ADD Rd
+							output <= acc + input;
+						when "0100" => --- Operacao de SUB Rd
+							output <= acc - input;
+						when "0101" => --- Operacao de ANDR Rd
+							output <= acc and input;
+						when "0110" => --- Operacao de ORR Rd
+							output <= acc or input; 
+						when "1000" => --- Operacao de INV - inversao do acumulador
+							output <= not acc;
+						when "0010" => 
+							output <= imm;
+						when others =>
+							output <= input;
+					end case;	
+			end case;
 		end if;	
-		
-		output <= imm;
 	end process;
-
 end bhv;
 
 -- *************************************************************************
@@ -58,12 +72,16 @@ begin
 		if (rst = '1') then
 			output <= "0000";
 		elsif (clk'event and clk = '1') then
-				if (enb = '1') then 
-					output <= input;
-					temp <= input;
-				else
-					output <= temp;
-				end if;
+			case (atv) is
+				when "0111" =>
+					if (enb = '1') then 
+						output <= input;
+						temp <= input;
+					else
+						output <= temp;
+					end if;
+				when others =>
+			end case; 		
 		end if;
 	end process;
 end bhv;
